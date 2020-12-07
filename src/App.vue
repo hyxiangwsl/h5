@@ -18,6 +18,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  height: 1500px;
+  height: 100vh;
 }
 </style>
