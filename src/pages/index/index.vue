@@ -183,7 +183,7 @@ export default {
   line-height: 23px;
 }
 .item-swiper{
-  // height: 100px;
+  height: 100px;
 }
 .swiper-img {
   width: 100%;

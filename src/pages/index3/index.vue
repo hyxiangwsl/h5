@@ -286,7 +286,6 @@ export default {
     width: 100%;
   }
   .pro-btn-bottom {
-    width: 357px;
     height: 44px;
     background: #e92f2b;
     border-radius: 6px;
@@ -308,6 +307,7 @@ export default {
     position: fixed;
     right: 14px;
     bottom: 10px;
+    z-index: 100;
     .fix-logo-container {
       width: 56px;
       height: 56px;

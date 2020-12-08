@@ -1,6 +1,6 @@
 <template>
   <div class="tab-container">
-    <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane
         v-for="(i, index) in labels"
         :key="index"
@@ -14,8 +14,8 @@
 export default {
   data() {
     return {
-      activeName: "Deals",
-      labels: ["Deals", "Community"],
+      activeName: "Topic",
+      labels: ["Topic", "Category of The Dayee", "Flash Deals", "Common"],
     };
   },
   methods: {
@@ -32,9 +32,6 @@ export default {
   // border-bottom: 1px solid #f0f0f0;
   overflow: auto;
   ::v-deep {
-    // .el-tabs{
-      
-    // }
     .is-active {
       color: #e92f2b;
       // background-color: #e92f2b;
