@@ -3,12 +3,16 @@
     <top></top>
     <div class="banner">
       <div class="desc">
-        The 1st shopping community in SEA,
-        aiming to help users to make smarter choice
+        The 1st shopping community in SEA, aiming to help users to make smarter
+        choice
       </div>
       <div class="item-swiper">
         <swiper :options="swiperOption" class="ms-swiper">
-          <swiper-slide v-for="(item, index) in imglist" :key="index">
+          <swiper-slide
+            class="img_wrap"
+            v-for="(item, index) in imglist"
+            :key="index"
+          >
             <img :src="item.path" alt="" class="swiper-img" />
           </swiper-slide>
           <!-- 如果需要分页器 -->
@@ -182,15 +186,21 @@ export default {
   padding: 22px 0;
   line-height: 23px;
 }
-.item-swiper{
+.item-swiper {
   height: 100px;
+}
+.img_wrap {
+  min-height: 155px;
+  max-height: 177px;
+  width: 100%;
+  border-radius: 6px;
 }
 .swiper-img {
   width: 100%;
-  height: 100%;
-  border-radius: 6px;
+  // height: 100%;
+  max-height: 155px;
 }
-.tab{
+.tab {
   // margin-top: 20px;
 }
 .index-container {
