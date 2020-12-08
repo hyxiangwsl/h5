@@ -9,19 +9,39 @@ Router.prototype.push = function push(location) {
 
 const Index = () =>
     import ('@/pages/index/index.vue');
-
-
+const Index2 = () =>
+    import ('@/pages/index2/index.vue');
+const Index3 = () =>
+    import ('@/pages/index3/index.vue');
+const Index4 = () =>
+    import ('@/pages/index4/index.vue');
 Vue.use(Router);
 
 const router = new Router({
     routes: [{
-        path: "/index",
-        name: "index",
-        component: Index,
-    }, {
-        path: "",
-        redirect: '/index',
-    }]
+            path: "/index",
+            name: "index",
+            component: Index,
+        }, {
+            path: "",
+            redirect: '/index',
+        },
+        {
+            path: "/index2",
+            name: "index2",
+            component: Index2,
+        },
+        {
+            path: "/index3",
+            name: "index3",
+            component: Index3,
+        },
+        {
+            path: "/index4",
+            name: "index4",
+            component: Index4,
+        },
+    ]
 })
 
 //全局路由守卫

@@ -4,15 +4,12 @@
     <div class="banner">
       <div class="desc">
         The 1st shopping community in SEA,
-        <br />
         aiming to help users to make smarter choice
       </div>
       <div class="item-swiper">
         <swiper :options="swiperOption" class="ms-swiper">
           <swiper-slide v-for="(item, index) in imglist" :key="index">
-            <div class="swiper-img">
-              <img :src="item.path" alt="" class="swiper-img" />
-            </div>
+            <img :src="item.path" alt="" class="swiper-img" />
           </swiper-slide>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination" slot="pagination"></div>
@@ -22,7 +19,7 @@
         </swiper>
       </div>
     </div>
-    <div>
+    <div class="tab">
       <tab></tab>
     </div>
     <div class="product-container">
@@ -32,8 +29,15 @@
     <div class="waterfall-container">
       <div class="community">Community</div>
       <div class="waterfallList">
-        <card :list="cardList"></card>
+        <card :list1="cardList" :list2="cardList2"></card>
       </div>
+    </div>
+    <div class="pro-btn">view-more</div>
+    <div class="fixed-logo">
+      <div class="fix-logo-container">
+        <img src="../../assets/logo.png" alt="" />
+      </div>
+      <div class="fix-open">Open</div>
     </div>
   </div>
 </template>
@@ -129,28 +133,30 @@ export default {
           title: "Noice cancelling is a secret weapon",
         },
         {
-          imgSrc: require("../../../mock/image/waterfall/02.png"),
-          title: "Work from home is so boring",
-        },
-        {
           imgSrc: require("../../../mock/image/waterfall/03.png"),
           title: "Let’s run together",
-        },
-        {
-          imgSrc: require("../../../mock/image/waterfall/04.png"),
-          title: "",
         },
         {
           imgSrc: require("../../../mock/image/waterfall/05.png"),
           title: "Go out for the good sunset",
         },
         {
-          imgSrc: require("../../../mock/image/waterfall/06.png"),
-          title: "New Sneaker has just arrived",
-        },
-        {
           imgSrc: require("../../../mock/image/waterfall/07.png"),
           title: "Good smart charger ",
+        },
+      ],
+      cardList2: [
+        {
+          imgSrc: require("../../../mock/image/waterfall/02.png"),
+          title: "Work from home is so boring",
+        },
+        {
+          imgSrc: require("../../../mock/image/waterfall/04.png"),
+          title: "",
+        },
+        {
+          imgSrc: require("../../../mock/image/waterfall/06.png"),
+          title: "New Sneaker has just arrived",
         },
         {
           imgSrc: require("../../../mock/image/waterfall/08.png"),
@@ -167,7 +173,7 @@ export default {
 @import "@/assets/scss/common.scss";
 .banner {
   height: 247px;
-  width: 375px;
+  width: 100%;
   background: url("../../assets/images/bannerBg.png");
 }
 .desc {
@@ -176,14 +182,21 @@ export default {
   padding: 22px 0;
   line-height: 23px;
 }
+.item-swiper{
+  // height: 100px;
+}
 .swiper-img {
+  width: 100%;
+  height: 100%;
   border-radius: 6px;
+}
+.tab{
+  // margin-top: 20px;
 }
 .index-container {
   background-color: #f8f8f8;
 }
 .pro-btn {
-  width: 357px;
   height: 44px;
   background: #e9e9e9;
   border-radius: 6px;
@@ -202,5 +215,40 @@ export default {
   line-height: 24px;
   margin-left: 9px;
 }
-
+.pro-btn-bottom {
+  width: 357px;
+  height: 44px;
+  background: #e9e9e9;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 44px;
+  margin: 0 9px;
+  margin-bottom: 100px;
+}
+.fixed-logo {
+  position: fixed;
+  right: 14px;
+  bottom: 10px;
+  .fix-logo-container {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  .fix-open {
+    width: 57px;
+    height: 20px;
+    line-height: 20px;
+    background-color: #e92f2b;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-top: 6px;
+    font-size: 10px;
+    color: #fff;
+  }
+}
 </style>

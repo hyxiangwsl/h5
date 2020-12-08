@@ -24,14 +24,15 @@
         </div>
         <div class="pro-other">
           <div class="place fontGrey">{{ item.place }}</div>
-
-          <div class="fontGrey vote-comment">
-            <img src="./images/vote.png" alt="" />
-            <span>{{ item.vote }} </span>
-          </div>
-          <div class="pro-comment fontGrey vote-comment">
-            <img src="./images/comment.png" alt="" />
-            <span>{{ item.comment }}</span>
+          <div class="pro-other-right">
+            <div class="fontGrey vote-comment">
+              <img src="./images/vote.png" alt="" />
+              <span>{{ item.vote }} </span>
+            </div>
+            <div class="pro-comment fontGrey vote-comment">
+              <img src="./images/comment.png" alt="" />
+              <span>{{ item.comment }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -62,7 +63,7 @@ export default {
 .container {
   display: flex;
   height: 117px;
-  width: 357px;
+  // width: 100%;
   border-radius: 6px;
   background-color: #fff;
   margin: 9px;
@@ -92,7 +93,7 @@ export default {
     margin-top: 9px;
   }
   .moneyList,
-  .pro-other {
+  .pro-other,.pro-other-right {
     display: flex;
   }
   .cost {
@@ -124,12 +125,13 @@ export default {
     margin-left: 9px;
     text-decoration: line-through;
   }
-  .place {
-    margin-right: 82px;
+  .pro-other-right  {
+    margin-right: 8px;
   }
   .pro-other {
     margin-top: 9px;
     text-align: center;
+    justify-content: space-between;
   }
   .pro-comment {
     margin-left: 16px;
@@ -153,6 +155,10 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
+    img {
+      width: 14px;
+      height: 14px;
+    }
   }
 }
 </style>

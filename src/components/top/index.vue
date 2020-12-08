@@ -17,6 +17,7 @@
   background-color: #fff;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.2);
 }
 .logo{
   margin-left: 16px;
