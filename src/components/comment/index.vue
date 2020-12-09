@@ -14,8 +14,7 @@
       <div class="say">
         <span class="nickname">Lucia: </span>
         <span class="say-detail">
-          This products is so nice! This products is so nice! This products is
-          so good! 😄
+          This products is so nice! This products is so nice! This products is so good! 😄
         </span>
       </div>
     </div>
@@ -33,13 +32,17 @@
   background: #f8f8f8;
   border-radius: 6px;
   .say {
-    margin-top: 19px;
-    margin-right: 9px;
+    // margin-top: 19px;
+    // margin-right: 9px;
     text-align: left;
+
+    // display: flex;
   }
   .line {
     display: flex;
+    // justify-content: center;
     align-items: center;
+    vertical-align: top;
   }
   .avator {
     width: 24px;
@@ -87,7 +90,7 @@
     input {
       border: 0;
       border-radius: 0px;
-      background-color:transparent;
+      background-color: transparent;
       border-bottom: 1px solid #e9e9e9;
       &::placeholder {
         font-family: Roboto;
