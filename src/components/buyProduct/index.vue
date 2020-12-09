@@ -27,7 +27,7 @@ export default {
   border-radius: 6px;
   display: flex;
   //   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   .buy-left {
     width: 97px;
     height: 97px;
@@ -35,6 +35,7 @@ export default {
     border-radius: 6px;
   }
   .buy-right {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -1,6 +1,6 @@
 <template>
   <div class="tab-container">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
       <el-tab-pane
         v-for="(i, index) in labels"
         :key="index"

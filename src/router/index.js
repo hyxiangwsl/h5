@@ -15,16 +15,24 @@ const Index3 = () =>
     import ('@/pages/index3/index.vue');
 const Index4 = () =>
     import ('@/pages/index4/index.vue');
+const Upload = () =>
+    import ('@/pages/upload/index.vue');
+
 Vue.use(Router);
 
 const router = new Router({
     routes: [{
-            path: "/index",
-            name: "index",
-            component: Index,
+            path: "/upload",
+            name: "upload",
+            component: Upload,
         }, {
             path: "",
             redirect: '/index',
+        },
+        {
+            path: "/index",
+            name: "index",
+            component: Index,
         },
         {
             path: "/index2",

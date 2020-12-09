@@ -7,11 +7,7 @@
       <div class="pro-right">
         <div class="pro-title weight400">{{ item.title }}</div>
         <div class="tips">
-          <div
-            v-for="(i, idx) in item.tips"
-            :key="idx"
-            class="pro-tip colorBase"
-          >
+          <div v-for="(i, idx) in item.tips" :key="idx" class="pro-tip colorBase">
             {{ i }}
           </div>
         </div>
@@ -141,24 +137,32 @@ export default {
     height: 16px;
     line-height: 16px;
     display: flex;
-    margin: 6px;
-  }
-  .pro-tip {
-    border: 0.5px solid #e92f2b;
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-family: SF Pro Display;
-    margin-right: 6px;
-    font-size: 10px;
-  }
-  .vote-comment {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    img {
-      width: 14px;
-      height: 14px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .pro-tip {
+      border: 0.5px solid #e92f2b;
+      box-sizing: border-box;
+      border-radius: 2px;
+      font-family: SF Pro Display;
+      margin-right: 6px;
+      font-size: 10px;
+      height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vote-comment {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+
+      img {
+        width: 14px;
+        height: 14px;
+      }
     }
   }
-}
 </style>

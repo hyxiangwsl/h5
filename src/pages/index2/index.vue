@@ -35,6 +35,15 @@
         </div>
         <div class="money-right"><span> Buy Now</span></div>
       </div>
+
+      <div class="comment-container-top">
+        <div>
+          Shopee has Kronenbourg 1664 Blanc Wheat Beer Can 320ml on sale for special price $67.90. With $5
+          off Min.
+          Spend
+          $60 voucher, Additional 10% off coin cashback voucher, Lowest price $24.80. Enjoy Free shipping.
+        </div>
+      </div>
       <div class="info">
         <div class="info-left">
           <div class="lable">
@@ -201,25 +210,54 @@ export default {
   text-align: left;
   /* Colors / #000000 / 1.0 */
 
-  color: #000000;
-}
-.details-bottom {
-  padding: 0 10px;
-  .details-money {
+    color: #000000;
+  }
+
+  .comment-container-top {
+    height: 146px;
+    width: 351px;
+    margin: 24px auto;
+    background-color: #f8f8f8;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+
+
   }
-  .money-left {
+
+  .comment-container-top>div {
+    width: 324px;
+    height: 120px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
     text-align: left;
+
   }
-  .money-cost {
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
+
+
+  .details-bottom {
+    padding: 0 10px;
+
+    .details-money {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .money-left {
+      text-align: left;
+    }
+
+    .money-cost {
+      font-family: SF Pro Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 29px;
+      /* identical to box height */
 
     color: #f11515;
   }
@@ -255,7 +293,7 @@ export default {
     justify-content: space-between;
     background: #f8f8f8;
     border-radius: 6px;
-    margin-top: 190px;
+    //margin-top: 190px;
     padding: 12px;
   }
   .info-left {

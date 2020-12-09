@@ -3,16 +3,11 @@
     <top></top>
     <div class="banner">
       <div class="desc">
-        The 1st shopping community in SEA, aiming to help users to make smarter
-        choice
+        The 1st shopping community in SEA, aiming to help users to make smarter choice
       </div>
       <div class="item-swiper">
         <swiper :options="swiperOption" class="ms-swiper">
-          <swiper-slide
-            class="img_wrap"
-            v-for="(item, index) in imglist"
-            :key="index"
-          >
+          <swiper-slide class="img_wrap" v-for="(item, index) in imglist" :key="index">
             <img :src="item.path" alt="" class="swiper-img" />
           </swiper-slide>
           <!-- 如果需要分页器 -->
@@ -86,8 +81,7 @@ export default {
       productList: [
         {
           imgSrc: require("../../../mock/image/product/01.png"),
-          title:
-            "Hot ! ! Originality LED Table lamp Touch Bedside Lamp Bedroom... ",
+          title: "Hot ! ! Originality LED Table lamp Touch Bedside Lamp Bedroom... ",
           cost: "15.00",
           save: "10.00",
           costOld: "25.00",
@@ -109,8 +103,7 @@ export default {
         },
         {
           imgSrc: require("../../../mock/image/product/03.png"),
-          title:
-            "50pcs Disposable Mask Pad Isolation Filter Anti-haze Dustpr...",
+          title: "50pcs Disposable Mask Pad Isolation Filter Anti-haze Dustpr...",
           cost: "25.00",
           save: "",
           costOld: "40.00 (-50%)",
@@ -189,19 +182,35 @@ export default {
 .item-swiper {
   height: 100px;
 }
+.product-container {
+  margin-top: -8px;
+}
+.tips {
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .img_wrap {
   min-height: 155px;
   max-height: 177px;
   width: 100%;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .swiper-img {
-  width: 100%;
-  // height: 100%;
+  width: 96%;
+  height: 100%;
   max-height: 155px;
+  border-radius: 6px;
 }
-.tab {
-  // margin-top: 20px;
+//.tab {
+.swiper-img > img {
+  width: 714px;
+  height: 296px;
+  border-radius: 16px;
 }
 .index-container {
   background-color: #f8f8f8;
