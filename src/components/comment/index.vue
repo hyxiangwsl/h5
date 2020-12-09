@@ -31,18 +31,19 @@
 .comment-container {
   background: #f8f8f8;
   border-radius: 6px;
-  .say {
-    // margin-top: 19px;
+  .line {
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    vertical-align: top;
+  }
+   .say {
+     flex: 1;
+    margin-top: 9px;
     // margin-right: 9px;
     text-align: left;
 
     // display: flex;
-  }
-  .line {
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-    vertical-align: top;
   }
   .avator {
     width: 24px;
