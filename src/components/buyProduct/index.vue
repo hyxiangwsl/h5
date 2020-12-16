@@ -1,10 +1,10 @@
 <template>
   <div class="buy-container">
-    <img class="buy-left" :src="obj.imgSrc" alt="" srcset="" />
+    <img class="buy-left" :src="obj.src" alt="" srcset="" />
     <div class="buy-right">
-      <div class="title">{{ obj.title }}</div>
+      <div class="title">{{ obj.text }}</div>
       <div class="other">
-        <div class="cost">¥ {{ obj.cost }}</div>
+        <div class="cost">¥ {{ obj.price }}</div>
         <div class="buy-btn">Buy</div>
       </div>
     </div>
@@ -23,7 +23,9 @@ export default {
 </script>
 <style lang="scss">
 .buy-container {
+  width: 100%;
   background: #f8f8f8;
+  overflow: hidden;
   border-radius: 6px;
   display: flex;
   //   align-items: center;
@@ -41,8 +43,13 @@ export default {
     justify-content: space-between;
   }
   .title {
+    width: 250px;
     margin-top: 12px;
     font-family: SF Pro Display;
+    text-align: left;
+     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;

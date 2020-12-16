@@ -1,24 +1,15 @@
 <template>
   <div class="comment-container">
-    <div class="line">
-      <img class="avator" src="./images/ac01.png" alt="" />
+    <div class="line" v-for="(item,index) in list" :key="index">
+      <img class="avator" :src="item.user_avatar" alt="" />
       <div class="say">
-        <span class="nickname">Lucia: </span>
+        <span class="nickname">{{item.user_name}} </span>
         <span class="say-detail">
           This products is so nice! This products is so nice!
         </span>
       </div>
     </div>
-    <div class="line">
-      <img class="avator" src="./images/ac02.png" alt="" />
-      <div class="say">
-        <span class="nickname">Lucia: </span>
-        <span class="say-detail">
-          This products is so nice! This products is so nice! This products is so good! 😄
-        </span>
-      </div>
-    </div>
-    <div class="more">View all 3 comments</div>
+    <div class="more" v-if="list.length>0">View all {{list.length}} comments</div>
     <div class="line">
       <img class="avator" src="./images/ac03.png" alt="" />
       <div class="comment">
@@ -27,14 +18,23 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+   props: {
+    list: {
+      type: Array,
+      default: () => [],
+    },
+  },
+}
+</script>
 <style lang="scss" scoped>
 .comment-container {
   background: #f8f8f8;
   border-radius: 6px;
+  padding-bottom: 15px;
   .line {
     display: flex;
-    // justify-content: center;
-    // align-items: center;
     vertical-align: top;
   }
    .say {
@@ -88,11 +88,16 @@
     opacity: 0.8;
   }
   .comment {
+    display: flex;
+    align-content: center;
+    width: 80%;
     input {
       border: 0;
+      width: 100%;
       border-radius: 0px;
       background-color: transparent;
       border-bottom: 1px solid #e9e9e9;
+      
       &::placeholder {
         font-family: Roboto;
         font-style: normal;

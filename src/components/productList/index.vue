@@ -2,32 +2,41 @@
   <div>
     <div class="container" v-for="(item, index) in list" :key="index">
       <div class="pro-img">
-        <img :src="item.imgSrc" alt="" srcset="" />
+        <img :src="item.deals_image" alt="" srcset="" />
       </div>
       <div class="pro-right">
-        <div class="pro-title weight400">{{ item.title }}</div>
+        <div class="pro-title weight400">{{ item.deals_title }}</div>
         <div class="tips">
-          <div v-for="(i, idx) in item.tips" :key="idx" class="pro-tip colorBase">
+          <div
+            v-for="(i, idx) in item.tips"
+            :key="idx"
+            class="pro-tip colorBase"
+          >
             {{ i }}
           </div>
         </div>
         <div class="moneyList">
-          <div class="cost colorBase">${{ item.cost }}</div>
-          <div class="save" v-if="item.save !== ''">Save ${{ item.save }}</div>
+          <div class="cost colorBase">${{ item.deals_price }}</div>
+          <div class="save" v-if="item.deals_price_old - item.deals_price > 0">
+            Save ${{ item.deals_price_old - item.deals_price }}
+          </div>
           <div class="costOld fontGrey" v-if="item.costOld !== ''">
-            ${{ item.costOld }}
+            ${{ item.deals_price_old }}
           </div>
         </div>
         <div class="pro-other">
-          <div class="place fontGrey">{{ item.place }}</div>
+          <div class="place fontGrey">
+            {{ item.deals_type }} |
+            {{ item.deals_flashstarttime | filterTime }}
+          </div>
           <div class="pro-other-right">
             <div class="fontGrey vote-comment">
               <img src="./images/vote.png" alt="" />
-              <span>{{ item.vote }} </span>
+              <span>{{ item.like_num }} </span>
             </div>
             <div class="pro-comment fontGrey vote-comment">
               <img src="./images/comment.png" alt="" />
-              <span>{{ item.comment }}</span>
+              <span>{{ item.report_num }}</span>
             </div>
           </div>
         </div>
@@ -48,11 +57,7 @@ export default {
       activIndex: 0,
     };
   },
-  methods: {
-    doChange(index) {
-      this.activIndex = index;
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
@@ -73,6 +78,7 @@ export default {
     }
   }
   .pro-right {
+    margin-left: 9px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -89,8 +95,13 @@ export default {
     margin-top: 9px;
   }
   .moneyList,
-  .pro-other,.pro-other-right {
+  .pro-other,
+  .pro-other-right {
     display: flex;
+  }
+  .moneyList {
+    display: flex;
+    align-items: center;
   }
   .cost {
     font-weight: 500;
@@ -116,12 +127,13 @@ export default {
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
+    padding: 3px;
   }
   .costOld {
     margin-left: 9px;
     text-decoration: line-through;
   }
-  .pro-other-right  {
+  .pro-other-right {
     margin-right: 8px;
   }
   .pro-other {
@@ -137,32 +149,34 @@ export default {
     height: 16px;
     line-height: 16px;
     display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 6px;
+    margin-bottom: 5px;
+  }
 
-    .pro-tip {
-      border: 0.5px solid #e92f2b;
-      box-sizing: border-box;
-      border-radius: 2px;
-      font-family: SF Pro Display;
-      margin-right: 6px;
-      font-size: 10px;
-      height: 90%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  .pro-tip {
+    border: 0.5px solid #e92f2b;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+    margin-right: 6px;
+    font-size: 10px;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .vote-comment {
-      display: flex;
-      justify-content: center;
-      align-content: center;
+  .vote-comment {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 
-      img {
-        width: 14px;
-        height: 14px;
-      }
+    img {
+      width: 14px;
+      height: 14px;
     }
   }
+}
 </style>

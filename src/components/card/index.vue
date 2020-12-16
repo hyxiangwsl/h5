@@ -72,6 +72,7 @@ export default {
   .item .card-img > img {
     width: 100%;
     height: 100%;
+    border-radius: 6px 6px 0px 0px;
   }
   .card-title {
     font-family: Roboto;

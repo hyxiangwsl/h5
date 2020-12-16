@@ -2,84 +2,51 @@
   <div class="index-container">
     <top></top>
     <div class="banner">
-      <img src="../../assets/images/super.png" alt="" />
+      <img :src="manageObj.campaignpage_image" alt="" />
     </div>
     <div>
       <tab2></tab2>
     </div>
     <div class="details-bottom">
       <div class="desc-titile">
-        Super Tech Expo 2020: Get Your Hands On Timed Flash Deals, Million $
-        Discount
+        {{ manageObj.campaignpage_title }}
       </div>
-      <div class="desc">
-        There are always a couple of Tech Fairs to look forward to when the new
-        year comes along, because techies can anticipate the latest gadgets
-        going on big discounts, or even snag sme awesome deals at the cheapest
-        prices for other electronics products. While this year might be a little
-        different because we cannot physically head down to these fairs, don’t
-        worry because our upcoming Super Tech Expo will ensure that you are not
-        missing out on much at all!
-      </div>
-      <div class="info">
-        <div class="info-detail">
-          Happening from 23 – 28 May, expect timed flash deals, daily markdowns
-          on electronic products, brand box madness and so much more!
+    </div>
+    <div v-for="(item, index) in manageObj.campaignpage_content" :key="index">
+      <div class="details-bottom">
+        <div class="desc-titile" v-if="item.type == 'title'">
+          <span></span>
+        </div>
+        <div class="desc" v-if="item.type == 'text'">
+          <span v-html="item.text">{{ item.text }}</span>
+        </div>
+        <div class="info" v-if="item.type == 'quote'">
+          <div class="info-detail">
+            {{ item.text }}
+          </div>
         </div>
       </div>
-      <div class="info2">
-        <div class="info-detail">You stay at home, we have you covered.</div>
+      <div class="movie" v-if="item.type == 'video'">
+        <video :src="item.src"></video>
+        <img :src="item.src" alt="" />
       </div>
-    </div>
-    <div class="movie">
-      <img src="../../assets/images/movie.png" alt="" />
+      <div class="movie" v-if="item.type == 'images'">
+        <img :src="item.src" alt="" />
+      </div>
+      <div v-if="item.type == 'dealscard'">
+        <buy-product :obj="item"></buy-product>
+      </div>
     </div>
     <div class="details-bottom">
-      <div class="movie-desc">
-        Shop some of the most popular tech brands, according to the category of
-        the day at the lowest priced guaranteed daily, proudly subsidised by
-        Shopee!
-      </div>
-    </div>
-    <div class="movie">
-      <img src="../../assets/images/movie2.png" alt="" />
-    </div>
-    <div class="details-bottom">
-      <div class="movie-title">Category of The Day</div>
-      <div class="movie-desc">
-        Narrow down your search by browsing our featured collections to find
-        exactly what you need for your home. Some deals that you can look
-        forward to include the ECOVACS robotic vacuum cleaner going at 53% off,
-        or the Europace Tower Fan at 46% off and so much more!
-      </div>
-      <div>
-        <buy-product :obj="obj1"></buy-product>
-      </div>
-      <div class="movie-title">Flash Deals</div>
-      <div class="movie-desc">
-        Our sales are never complete without our signature flash deals! From 23
-        – 28 May, look forward to up to 8 time slots daily where you can grab
-        amazing deals at discounted prices.
-        <br /><br />
-        Our popular $0.99 Flash Deals Relay will also be making a comeback at
-        selected timings, so make sure you jot them down in your calendar and
-        don’t miss out.
-      </div>
-      <div>
-        <buy-product :obj="obj2"></buy-product>
-      </div>
-      <div style="margin-top: 15px">
-        <buy-product :obj="obj3"></buy-product>
-      </div>
       <div class="desc-time">
-        <div>4-19</div>
+        <div>{{manageObj.campaignpage_updatetime | filterTime}}</div>
         <div class="report">
           <span>Report</span>
           <span>∨</span>
         </div>
       </div>
       <div>
-        <comment></comment>
+        <comment :list="manageObj.report"></comment>
       </div>
     </div>
   </div>
@@ -93,29 +60,39 @@ export default {
   components: { top, tab2, comment, buyProduct },
   data() {
     return {
-      obj1: {
-        imgSrc: require("../../../mock/image/buy/01.png"),
-        title: "50pcs 3ply Face Mask Disposable Earloop Civilian F…",
-        cost: "25.00",
-      },
-      obj2: {
-        imgSrc: require("../../../mock/image/buy/02.png"),
-        title: "50pcs 3ply Face Mask Disposable Earloop Civilian F…",
-        cost: "25.00",
-      },
-      obj3: {
-        imgSrc: require("../../../mock/image/buy/03.png"),
-        title: "50pcs 3ply Face Mask Disposable Earloop Civilian F…",
-        cost: "25.00",
-      },
+      manageObj: {}, //文章对象
     };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      let params = {
+        access_token: "",
+        plat: "web",
+        version: "1",
+        lang: "cn",
+        campaignpage_id: "127",
+      };
+      this.getPostDetails(params).then((res) => {
+        console.log("数据", res);
+        this.manageObj = res;
+      });
+    },
+    async getPostDetails(params) {
+      let res = await this.$api.getPostDetails(params);
+      return res.data.data;
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
 @import "@/assets/scss/common.scss";
+.banner img {
+  height: 304px;
+  width: 100%;
+}
 .details-bottom {
   padding: 0 10px;
   text-align: left;
@@ -201,8 +178,8 @@ export default {
     align-items: center;
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
-    span{
-        margin: 2px;
+    span {
+      margin: 2px;
     }
   }
 }

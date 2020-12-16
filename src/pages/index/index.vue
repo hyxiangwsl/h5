@@ -171,6 +171,7 @@ export default {
 .banner {
   height: 247px;
   width: 100%;
+  margin-top:58px ;
   background: url("../../assets/images/bannerBg.png");
 }
 .desc {

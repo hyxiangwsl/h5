@@ -333,6 +333,7 @@ export default {
 }
 .banner {
   position: relative;
+    margin-top:58px ;
 }
 .box {
   display: inline-block;

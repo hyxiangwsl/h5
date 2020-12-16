@@ -14,12 +14,15 @@
 .comp-top {
   width: 100%;
   height: 57px;
+  position: fixed;
+  top: 0px;
   background-color: #fff;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(153, 153, 153, 0.2);
+  z-index: 999;
 }
-.logo{
+.logo {
   margin-left: 16px;
 }
 .logo-titil {
@@ -33,7 +36,7 @@
   flex: 1;
   width: 95px;
   height: 28px;
-  line-height: 28px;
+  line-height: 24px;
   background: #ffffff;
   border: 1px solid #e92f2b;
   box-sizing: border-box;
@@ -41,5 +44,4 @@
   text-align: center;
   margin-right: 16px;
 }
-
 </style>

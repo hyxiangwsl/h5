@@ -10,6 +10,7 @@
   align-items: center;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
+  z-index: 9;
   .follow {
     margin: 0 5px;
     font-family: Roboto;

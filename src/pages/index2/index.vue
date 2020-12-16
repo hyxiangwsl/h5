@@ -5,8 +5,8 @@
       <div class="item-swiper">
         <swiper :options="swiperOption" class="ms-swiper">
           <swiper-slide v-for="(item, index) in imglist" :key="index">
-            <div class="swiper-img">
-              <img :src="item.path" alt="" class="swiper-img" />
+            <div>
+              <img :src="item" alt="" class="swiper-img" />
             </div>
           </swiper-slide>
           <!-- 如果需要分页器 -->
@@ -23,25 +23,38 @@
     </div>
     <div class="details-bottom">
       <div class="desc">
-        Facial Cleaning Massage Brush Waterproof Silicone Facial Cleansing ...
+        {{ dealsDetailObj.deals_title }}
       </div>
       <div class="details-money">
         <div class="money-left">
           <div>
-            <span class="money-cost">$2411.80</span>
-            <span class="money-costOld fontGrey">$2511.00</span>
+            <span class="money-cost">${{ dealsDetailObj.deals_price }}</span>
+            <span class="money-costOld fontGrey"
+              >${{ dealsDetailObj.deals_price_old }}</span
+            >
           </div>
-          <div class="money-save">Save $100.00</div>
+          <div
+            class="money-save"
+            v-if="
+              dealsDetailObj.deals_price_old - dealsDetailObj.deals_price > 0
+            "
+          >
+            Save ${{
+              (dealsDetailObj.deals_price_old - dealsDetailObj.deals_price).toFixed(2)
+            }}
+          </div>
         </div>
         <div class="money-right"><span> Buy Now</span></div>
       </div>
 
       <div class="comment-container-top">
         <div>
-          Shopee has Kronenbourg 1664 Blanc Wheat Beer Can 320ml on sale for special price $67.90. With $5
-          off Min.
-          Spend
-          $60 voucher, Additional 10% off coin cashback voucher, Lowest price $24.80. Enjoy Free shipping.
+          <span>Shopee</span> has
+          <span>Kronenbourg 1664 Blanc Wheat Beer Can 320ml</span> on sale for
+          special price <span>$67.90.</span> With
+          <span>$5 off Min. Spend $60</span> voucher, Additional
+          <span>10% off</span> coin cashback voucher, Lowest price
+          <span>$24.80</span>. Enjoy <span>Free shipping</span>.
         </div>
       </div>
       <div class="info">
@@ -51,8 +64,8 @@
             <span>Code: </span>
           </div>
           <div class="code">
-            <span>$10 off Min. Spend $345 </span>
-            <span>DEDO50OF</span>
+            <span>{{ dealsDetailObj.deals_voucherlink }}</span>
+            <span>{{ dealsDetailObj.deals_discountvouchercode }}</span>
           </div>
         </div>
         <div class="info-right">Copy</div>
@@ -64,7 +77,7 @@
       </div>
       <div class="desc-time">4-19</div>
       <div>
-        <comment></comment>
+        <comment :list='dealsDetailObj.report'></comment>
       </div>
       <div class="community">Recommend for you</div>
       <div class="product-container">
@@ -93,35 +106,7 @@ export default {
   components: { top, swiper, swiperSlide, comment, productList, follow },
   data() {
     return {
-      imglist: [
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-        {
-          path: require("../../../mock/image/products2.png"),
-        },
-      ],
+      imglist: [],
       swiperOption: {
         loop: true,
         pagination: {
@@ -141,66 +126,82 @@ export default {
         //页码
       },
       active: 0,
-      productList: [
-        {
-          imgSrc: require("../../../mock/image/product/01.png"),
-          title:
-            "Hot ! ! Originality LED Table lamp Touch Bedside Lamp Bedroom... ",
-          cost: "15.00",
-          save: "10.00",
-          costOld: "25.00",
-          place: "Lazada | 14:50",
-          vote: 10,
-          comment: 10,
-          tips: [],
-        },
-        {
-          imgSrc: require("../../../mock/image/product/02.png"),
-          title: "Tddler Edituon 100.000 Whys a full set of 30 volumes",
-          cost: "25.00",
-          save: "10.00",
-          costOld: "25.00",
-          place: "Lazada | 14:50",
-          vote: 10,
-          comment: 10,
-          tips: ["Voucher", "Cashback"],
-        },
-        {
-          imgSrc: require("../../../mock/image/product/03.png"),
-          title:
-            "50pcs Disposable Mask Pad Isolation Filter Anti-haze Dustpr...",
-          cost: "25.00",
-          save: "",
-          costOld: "40.00 (-50%)",
-          place: "Lazada | 4-5",
-          vote: 10,
-          comment: 10,
-          tips: ["Voucher"],
-        },
-        {
-          imgSrc: require("../../../mock/image/product/04.png"),
-          title: "AHC Premium Hydra Soother Cellulose Mask",
-          cost: "25,000,000",
-          save: "",
-          costOld: "",
-          place: "Shoppee | 4-2",
-          vote: 10,
-          comment: 10,
-          tips: ["Cashback"],
-        },
-      ],
+      productList: [],
       current: 1, //轮播图当前页
+      dealsDetailObj: {},
     };
   },
   created() {
     vm = this;
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      // let params = {
+      //   access_token: "",
+      //   plat: "user",
+      //   version: "1",
+      //   lang: "cn",
+      //   deals_categoryid: "1",
+      //   deals_title: "a",
+      //   region: "2",
+      // };
+      // this.getDealList(params).then((res) => {
+      //   console.log(res);
+      //   this.productList = res.data;
+      // });
+      let params2 = {
+        access_token: "",
+        plat: "web",
+        version: "1",
+        lang: "cn",
+        deals_id: "61732",
+      };
+      this.getDealDetails(params2).then((res) => {
+        console.log(res, "商品详情");
+        //轮播图
+        this.imglist = res.deals_images.split(",");
+        this.dealsDetailObj = res;
+        this.productList = res.recommend;
+      });
+       let params3 = {
+        access_token: "",
+        plat: "web",
+        version: "1",
+        lang: "cn",
+        deals_categoryid: "1",
+        deals_title: "a",
+        region: "2",
+      };
+      this.getCommentList(params3).then((res) => {
+        // console.log(res);
+        // this.productList = res.data;
+      });
+    },
+    async getDealList(params) {
+      let res = await this.$api.getDealList(params);
+      return res.data.data;
+    },
+    async getDealDetails(params) {
+      let res = await this.$api.getDealDetails(params);
+      return res.data.data;
+    },
+    async getCommentList(params) {
+      let res = await this.$api.getCommentList(params);
+       console.log('评论',res);
+      return res.data.data;
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
 @import "@/assets/scss/common.scss";
+.swiper-img {
+  height: 385px;
+  width: 100%;
+}
 .desc {
   font-family: SF Pro Display;
   font-style: normal;
@@ -210,54 +211,65 @@ export default {
   text-align: left;
   /* Colors / #000000 / 1.0 */
 
-    color: #000000;
+  color: #000000;
+}
+
+.comment-container-top {
+  height: auto;
+  width: 99%;
+  margin: 15px auto;
+  margin-top: 24px;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.comment-container-top > div {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  padding: 12px 12px;
+  background-image: url("../../assets/images/Group 88.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.comment-container-top > div > :first-child {
+  color: #e92f2b;
+}
+.comment-container-top > div > span {
+  font-weight: 400;
+  color: #000000;
+}
+.details-bottom {
+  padding: 0 10px;
+
+  .details-money {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .comment-container-top {
-    height: 146px;
-    width: 351px;
-    margin: 24px auto;
-    background-color: #f8f8f8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-
-  }
-
-  .comment-container-top>div {
-    width: 324px;
-    height: 120px;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
+  .money-left {
     text-align: left;
-
   }
 
-
-  .details-bottom {
-    padding: 0 10px;
-
-    .details-money {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .money-left {
-      text-align: left;
-    }
-
-    .money-cost {
-      font-family: SF Pro Display;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 24px;
-      line-height: 29px;
-      /* identical to box height */
+  .money-cost {
+    font-family: SF Pro Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
 
     color: #f11515;
   }
@@ -272,7 +284,8 @@ export default {
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
-
+    padding: 3px;
+    margin-top: 3px;
     /* Colors / #FFFFFF / 1.0 */
     background-color: #f11515;
     color: #ffffff;
@@ -420,6 +433,7 @@ export default {
 }
 .banner {
   position: relative;
+  margin-top: 58px;
 }
 .box {
   display: inline-block;
